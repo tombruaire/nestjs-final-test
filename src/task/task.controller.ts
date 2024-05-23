@@ -6,20 +6,20 @@ import type { Task } from '@prisma/client';
 export class TaskController {
     constructor(private taskService: TaskService) {}
 
-    @Post(':name/:user/:priority')
+    @Post(':nom/:userId/:priority')
     async addTask(
-        @Param('name') name: string,
-        @Param('user') user: string,
+        @Param('nom') nom: string,
+        @Param('userId') userId: number,
         @Param('priority') priority: number
     ): Promise<Task> {
-        return this.taskService.addTask(name, user, priority);
+        return this.taskService.addTask(nom, userId, priority);
     }
 
-    @Get(':name')
+    @Get(':nom')
     async getTaskByName(
-        @Param('name') name: string
+        @Param('nom') nom: string
     ): Promise<Task> {
-        return this.taskService.getTaskByName(name);
+        return this.taskService.getTaskByName(nom);
     }
 
     @Get('userId')

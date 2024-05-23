@@ -6,16 +6,26 @@ import type { PrismaService } from 'src/prisma.service';
 export class TaskService {
     constructor(private readonly prismaService: PrismaService) {}
 
-    async addTask(name: string, userId: string, priority: number): Promise<Task> {
-        throw new NotImplementedException();
+    async addTask(nom: string, userId: number, priority: number): Promise<Task> {
+            return this.prismaService.task.create({
+                data: {
+                    nom,
+                    userId,
+                    priority
+                },
+            });
     }
 
-    async getTaskByName(name: string): Promise<Task> {
-        throw new NotImplementedException();
+    async getTaskByName(nom: string): Promise<Task> {
+        return this.prismaService.task.findUnique({
+            where: { nom }
+        });
     }
 
-    async getUserTasks(userId: string): Promise<Task[]> {
-        throw new NotImplementedException();
+    async getUserTasks(userId: number): Promise<Task[]> {
+        return this.prismaService.task.findMany({
+            where: { userId }
+        })
     }
 
     async resetData(): Promise<void> {
