@@ -24,13 +24,13 @@ export class TaskController {
 
     @Get('userId')
     async getUserTasks(
-        @Param('userId') userId: string
+        @Param('userId') userId: number
     ): Promise<Task[]> {
         return this.taskService.getUserTasks(userId);
     }
 
     @Get('reset-data')
-    async resetData(): Promise<Task> {
+    async resetData(): Promise<void> {
         return this.taskService.resetData();
     }
 }
