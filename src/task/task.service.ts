@@ -1,9 +1,10 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import type { Task } from '@prisma/client';
+import type { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class TaskService {
-    // constructor() {}
+    constructor(private readonly prismaService: PrismaService) {}
 
     async addTask(name: string, userId: string, priority: number): Promise<Task> {
         throw new NotImplementedException();
@@ -17,7 +18,7 @@ export class TaskService {
         throw new NotImplementedException();
     }
 
-    async resetData(): Promise<Task> {
-        throw new NotImplementedException();
+    async resetData(): Promise<void> {
+        await this.prismaService.task.deleteMany();
     }
 }

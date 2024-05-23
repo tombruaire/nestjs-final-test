@@ -19,7 +19,7 @@ export class UserController {
     }
 
     @Get('reset-data')
-    async resetData(): Promise<User> {
+    async resetData(): Promise<void> {
         return this.userService.resetData();
     }
 }
