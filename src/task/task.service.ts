@@ -1,22 +1,23 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
+import type { Task } from '@prisma/client';
 
 @Injectable()
 export class TaskService {
-    constructor() {}
+    // constructor() {}
 
-    addTask(name: string, userId: string, priority: number): Promise<void> {
+    addTask(name: string, userId: string, priority: number): Promise<Task> {
         throw new NotImplementedException();
     }
 
-    getTaskByName(name: string): Promise<unknown> {
+    getTaskByName(name: string): Promise<Task> {
         throw new NotImplementedException();
     }
 
-    getUserTasks(userId: string): Promise<unknown[]> {
+    getUserTasks(userId: string): Promise<Task[]> {
         throw new NotImplementedException();
     }
 
-    resetData(): Promise<void> {
+    resetData(): Promise<Task> {
         throw new NotImplementedException();
     }
 }

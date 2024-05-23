@@ -23,4 +23,5 @@ model Task {
   id Int @default(autoincrement()) @id
   nom String
   user User[] @relation("taskUser")
+  priority Int
 }
