@@ -7,7 +7,7 @@ export class TaskController {
     constructor(private taskService: TaskService) {}
 
     @Post(':name/:user/:priority')
-    addTask(
+    async addTask(
         @Param('name') name: string,
         @Param('user') user: string,
         @Param('priority') priority: number
@@ -16,21 +16,21 @@ export class TaskController {
     }
 
     @Get(':name')
-    getTaskByName(
+    async getTaskByName(
         @Param('name') name: string
     ): Promise<Task> {
         return this.taskService.getTaskByName(name);
     }
 
     @Get('userId')
-    getUserTasks(
+    async getUserTasks(
         @Param('userId') userId: string
     ): Promise<Task[]> {
         return this.taskService.getUserTasks(userId);
     }
 
     @Get('reset-data')
-    resetData(): Promise<Task> {
+    async resetData(): Promise<Task> {
         return this.taskService.resetData();
     }
 }

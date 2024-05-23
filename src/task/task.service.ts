@@ -5,19 +5,19 @@ import type { Task } from '@prisma/client';
 export class TaskService {
     // constructor() {}
 
-    addTask(name: string, userId: string, priority: number): Promise<Task> {
+    async addTask(name: string, userId: string, priority: number): Promise<Task> {
         throw new NotImplementedException();
     }
 
-    getTaskByName(name: string): Promise<Task> {
+    async getTaskByName(name: string): Promise<Task> {
         throw new NotImplementedException();
     }
 
-    getUserTasks(userId: string): Promise<Task[]> {
+    async getUserTasks(userId: string): Promise<Task[]> {
         throw new NotImplementedException();
     }
 
-    resetData(): Promise<Task> {
+    async resetData(): Promise<Task> {
         throw new NotImplementedException();
     }
 }
