@@ -3,11 +3,11 @@ import { UserService } from './user.service';
 import { User } from '@prisma/client';
 import { UserInterface } from './interfaces/user.interface';
 
-@Controller('user/')
+@Controller()
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-    @Post('add')
+    @Post()
     async addUser(
         @Body(new ValidationPipe({ skipMissingProperties: true })) user: UserInterface
     ): Promise<User> {

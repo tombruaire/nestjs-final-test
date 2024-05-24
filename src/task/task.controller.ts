@@ -1,18 +1,18 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, ValidationPipe } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { Task } from '@prisma/client';
+import { TaskInterface } from './interfaces/task.interface';
 
-@Controller('task/')
+@Controller()
 export class TaskController {
     constructor(private taskService: TaskService) {}
 
-    @Post(':nom/:userId/:priority')
+    @Post()
     async addTask(
-        @Param('nom') nom: string,
-        @Param('userId') userId: number,
-        @Param('priority') priority: number
+        @Body(new ValidationPipe({ skipMissingProperties: true })) task: TaskInterface
     ): Promise<Task> {
-        return this.taskService.addTask(nom, userId, priority);
+        const { nom, user, priority } = task;
+        return await this.taskService.addTask(nom, user, priority);
     }
 
     @Get(':nom')
