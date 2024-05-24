@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Param, Post, ValidationPipe } from '@nestjs/common';
+import { Controller, Body, Get, Param, Post, ValidationPipe, ConflictException } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from '@prisma/client';
 import { UserInterface } from './interfaces/user.interface';
@@ -11,8 +11,15 @@ export class UserController {
     async addUser(
         @Body(new ValidationPipe({ skipMissingProperties: true })) user: UserInterface
     ): Promise<User> {
-        const email = user.email;
-        return this.userService.addUser(email);
+        try {
+            const email = user.email;
+            return await this.userService.addUser(email);
+        } catch (error) {
+            if (error instanceof ConflictException) {
+                throw new ConflictException('User already exists');
+            }
+            throw error;
+        }
     }
     
     @Get(':email')

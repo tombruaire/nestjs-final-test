@@ -7,13 +7,13 @@ export class TaskService {
     constructor(private readonly prismaService: PrismaService) {}
 
     async addTask(nom: string, user: [], priority: number): Promise<Task> {
-            return this.prismaService.task.create({
-                data: {
-                    nom,
-                    user,
-                    priority
-                },
-            });
+        return this.prismaService.task.create({
+            data: {
+                user,
+                priority,
+                nom
+            },
+        });
     }
 
     async getTaskByName(nom: string): Promise<Task> {
