@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Post } from '@nestjs/common';
-import type { TaskService } from './task.service';
-import type { Task } from '@prisma/client';
+import { TaskService } from './task.service';
+import { Task } from '@prisma/client';
 
 @Controller('task/')
 export class TaskController {

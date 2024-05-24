@@ -1,7 +1,7 @@
 import { Controller, Body, Get, Param, Post, ValidationPipe } from '@nestjs/common';
-import type { UserService } from './user.service';
-import type { User } from '@prisma/client';
-import type { UserInterface } from './interfaces/user.interface';
+import { UserService } from './user.service';
+import { User } from '@prisma/client';
+import { UserInterface } from './interfaces/user.interface';
 
 @Controller('user/')
 export class UserController {
