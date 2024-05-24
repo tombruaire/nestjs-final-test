@@ -1,13 +1,17 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Body, Get, Param, Post, ValidationPipe } from '@nestjs/common';
 import type { UserService } from './user.service';
 import type { User } from '@prisma/client';
+import type { UserInterface } from './interfaces/user.interface';
 
 @Controller('user/')
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-    @Post('add/:email')
-    async addUser(@Param('email') email: string): Promise<User> {
+    @Post('add')
+    async addUser(
+        @Body(new ValidationPipe({ skipMissingProperties: true })) user: UserInterface
+    ): Promise<User> {
+        const email = user.email;
         return this.userService.addUser(email);
     }
     

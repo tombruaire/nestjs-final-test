@@ -1,4 +1,4 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import type { User } from '@prisma/client';
 import type { PrismaService } from 'src/prisma.service';
 
